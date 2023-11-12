@@ -1,0 +1,38 @@
+@Composable
+fun MyLottieanimation(modifier: Modifier = Modifier) {
+    Box(
+        modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        val composition by rememberLottieComposition(
+            spec = LottieCompositionSpec.RawRes(R.raw.cartoon_characters)
+        )
+        var isPlaying by remember {
+            mutableStateOf(true)
+        }
+        val progress by animateLottieCompositionAsState(
+            composition = composition,
+            isPlaying = isPlaying
+        )
+        LaunchedEffect(key1 = progress) {
+            if (progress == 0f) {
+                isPlaying = true
+            }
+            if (progress == 1f) {
+                isPlaying = false
+            }
+        }
+
+        LottieAnimation(
+            composition = composition,
+            modifier = modifier.size(500.dp)
+                .clickable {
+                           isPlaying = true
+                },
+            //iterations = LottieConstants.IterateForever
+            progress = {
+                progress
+            }
+        )
+    }
+}
