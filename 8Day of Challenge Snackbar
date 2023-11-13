@@ -14,14 +14,14 @@ class MainActivity : AppCompatActivity() {
         btn2.setOnClickListener {
             Snackbar.make(mainLayout,"snackbar with action", Snackbar.LENGTH_SHORT)
                 .setAction("Toast"){
-                    Toast.makeText(this,"mkr developer", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"android", Toast.LENGTH_SHORT).show()
                 }
                 .show()
         }
         btn3.setOnClickListener {
             Snackbar.make(mainLayout,"constant snackbar ", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Toast"){
-                    Toast.makeText(this,"mkr developer", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"android", Toast.LENGTH_SHORT).show()
                 }
                 .show()
         }
