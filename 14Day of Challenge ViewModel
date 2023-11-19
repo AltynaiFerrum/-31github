@@ -1,0 +1,43 @@
+// State
+internal data class SearchState(
+   val searchQuery: String,
+   val searching: Boolean,
+   val searchResults: List<SearchResult>,
+   val noNetwork: Boolean
+)
+
+// UI State
+sealed interface SearchUiState {
+  object Loading: SearchUIState
+  data class Search(val query: String): SearchUiState
+  object NoNetwork: SearchUiState
+  data class SearchResults(val query: String, val results: List<SearchResultDisplayModel>): SearchUiState
+}
+
+// ViewModel
+class SearchViewModel: ViewModel() {
+  private val  _state = MutableStateFlow(SearchState.Idle)
+  val uiState: StateFlow<SearchUiState> get() = _state.map { ... }.stateIn(...)
+}
+
+// UI
+@Composable
+fun SearchScreen() {
+   val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+   
+   when(uiState) {
+      Loading -> {
+          CircularProgressBar(...)
+      }
+      
+     Search -> {
+         //.. column and
+         SearchBar()
+     }
+     
+     NoNetwork -> {
+          //..  column and
+          NoNetworkError()
+     }
+  }
+}
