@@ -1,0 +1,34 @@
+@Composable
+fun DrawCanvas() {
+    val tempPath = Path()
+    val path = remember {
+        mutableStateOf(Path())
+    }
+
+    Canvas(
+        modifier = Modifier
+            .fillMaxSize()
+            .pointerInput(true) {
+                detectDragGestures { change, dragAmount ->
+                    tempPath.moveTo(
+                        change.position.x - dragAmount.x,
+                        change.position.y - dragAmount.y
+                    )
+                    tempPath.lineTo(
+                        change.position.x,
+                        change.position.y
+                    )
+
+                    path.value = Path().apply {
+                        addPath(tempPath)
+                    }
+                }
+            }
+    ){
+        drawPath(
+            path.value,
+            color = Color.Red,
+            style = Stroke(5f)
+        )
+    }
+}
