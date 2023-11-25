@@ -1,0 +1,28 @@
+class Solution {
+    fun getSumAbsoluteDifferences(nums: IntArray): IntArray {
+        val n = nums.size
+    val result = IntArray(n)
+    
+    // Calculate the total sum of differences
+    var totalSum = 0
+    for (num in nums) {
+        totalSum += num
+    }
+    
+    var leftSum = 0
+    var rightSum = totalSum
+    
+    for (i in 0 until n) {
+        // Calculate the right sum
+        rightSum -= nums[i]
+        
+        // Calculate the left sum
+        result[i] = (nums[i] * i - leftSum) + (rightSum - nums[i] * (n - i - 1))
+        
+        // Update the left sum
+        leftSum += nums[i]
+    }
+    
+    return result
+}
+    }
