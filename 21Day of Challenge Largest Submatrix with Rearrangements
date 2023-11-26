@@ -1,0 +1,26 @@
+class Solution {
+  fun largestSubmatrix(matrix: Array<IntArray>): Int {
+    val m = matrix.size
+    val n = matrix[0].size
+    val heights = IntArray(n) { 0 }
+    var maxArea = 0
+    
+    for (i in 0 until m) {
+        for (j in 0 until n) {
+            if (matrix[i][j] == 1) {
+                heights[j] += 1
+            } else {
+                heights[j] = 0
+            }
+        }
+        
+        val sortedHeights = heights.sortedDescending()
+        
+        for (k in 0 until n) {
+            maxArea = maxOf(maxArea, sortedHeights[k] * (k + 1))
+        }
+    }
+    
+    return maxArea
+}
+}
