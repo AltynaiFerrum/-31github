@@ -1,0 +1,14 @@
+class Solution {
+    fun arrayStringsAreEqual(word1: Array<String>, word2: Array<String>): Boolean {
+           return word1.joinToString("") == word2.joinToString("")
+
+
+    }
+}
+
+
+// Example usage
+fun main() 
+    val word1 = arrayOf("a", "bc")
+    val word2 = arrayOf("ab", "c")
+    println(arrayStringsAreEqual(word1, word2)) // Output: true
