@@ -1,0 +1,25 @@
+class Solution {
+    fun countCharacters(words: Array<String>, chars: String): Int {
+        var charCount = IntArray(26)
+        for (char in chars) 
+            charCount[char - 'a']++
+        
+        var result = 0
+        for (word in words) {
+            val wordCount = IntArray(26)
+            var goodWord = true
+            for (char in word) {
+                val index = char - 'a'
+                wordCount[index]++
+                if (wordCount[index] > charCount[index]) {
+                    goodWord = false
+                    break
+                }
+            }
+            if (goodWord) {
+                result += word.length
+            }
+        }
+        return result
+    }
+}
