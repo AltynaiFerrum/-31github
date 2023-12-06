@@ -1,0 +1,17 @@
+class Solution {
+    fun totalMoney(n: Int): Int {
+    var total = 0
+    var currentDay = 1
+    var amount = 0
+    while (currentDay <= n) {
+        if (currentDay % 7 == 1) {
+          amount = currentDay / 7 + 1
+        } else {
+        amount++
+        }
+        total += amount
+          currentDay++
+    }
+    return total
+    }
+}
